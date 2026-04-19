@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heritage Zenith | Property Listings</title>
+    <title>Heritage Zenith | Property Listings/Filter page</title>
     <style>
-        * {
+        *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        body 
+        {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f5f7fb;
             color: #1e293b;
         }
 
-        /* main container */
-        .container {
+        .container 
+        {
             max-width: 1400px;
             margin: 0 auto;
             padding: 30px 25px;
         }
 
-        /* ===== HEADER SECTION ===== */
-        .header {
+        .header 
+        {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -36,71 +37,70 @@
             border-bottom: 2px solid #e2e8f0;
         }
 
-        .logo {
+        .logo 
+        {
             font-size: 28px;
             font-weight: 800;
         }
 
-        .logo .heritage {
-            color: #1e2a3e;
-        }
+        .logo .heritage { color: #1e2a3e; }
+        .logo .zenith { color: #c9974c; }
 
-        .logo .zenith {
-            color: #c9974c;
-        }
-
-        .auth-buttons {
+        .auth-buttons 
+        {
             display: flex;
             gap: 12px;
         }
 
-        .auth-buttons button {
+        .auth-buttons button 
+        {
             padding: 10px 24px;
             font-size: 14px;
             font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
-            transition: 0.2s;
             font-family: inherit;
             border: none;
         }
 
-        .signin-btn {
+        .signin-btn 
+        {
             background: white;
             border: 1.5px solid #c9974c;
             color: #1e2a3e;
         }
 
-        .signin-btn:hover {
-            background: #fef5e8;
-        }
+        .signin-btn:hover { background: #fef5e8; }
 
-        .signup-btn {
+        .signup-btn 
+        {
             background: #1e2a3e;
             color: white;
         }
 
-        .signup-btn:hover {
+        .signup-btn:hover 
+        {
             background: #c9974c;
             color: #1e2a3e;
         }
 
-        /* ===== SEARCH BAR ===== */
-        .search-section {
+        .search-section 
+        {
             margin-bottom: 30px;
         }
 
-        .search-bar {
+        .search-bar 
+        {
             display: flex;
             align-items: center;
             background: white;
             border: 2px solid #e2e8f0;
             border-radius: 60px;
             padding: 5px 5px 5px 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .search-bar input {
+        .search-bar input 
+        {
             flex: 1;
             border: none;
             outline: none;
@@ -109,232 +109,332 @@
             background: transparent;
         }
 
-        .search-bar button {
+        .search-bar button 
+        {
             background: #1e2a3e;
             color: white;
             border: none;
             padding: 12px 32px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 15px;
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        .search-bar button:hover {
-            background: #c9974c;
-        }
+        .search-bar button:hover { background: #c9974c; }
 
-        /* ===== FILTERS SECTION ===== */
-        .filters-section {
+        .filters-section 
+        {
             background: white;
             border-radius: 20px;
             padding: 20px 25px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
             border: 1px solid #eef2f8;
+            overflow-x: auto;
         }
 
-        .filter-row {
+        .filter-row 
+        {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 25px;
-            row-gap: 15px;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .filter-group label {
-            font-weight: 600;
-            color: #475569;
-        }
-
-        .filter-group input, .filter-group select {
-            padding: 10px 14px;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            font-size: 14px;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .interest-group {
-            display: flex;
-            align-items: center;
+            justify-content: flex-start;
             gap: 15px;
-            flex-wrap: wrap;
+            row-gap: 12px;
         }
 
-        .interest-tag {
-            background: #f1f5f9;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 500;
+        /* Consistent filter group styling */
+        .filter-group 
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 110px;
+        }
+
+        .filter-label 
+        {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e2a3e;
+            letter-spacing: 0.3px;
+        }
+
+        /* Interest Tags */
+        .interest-group 
+        {
+            display: flex;
+            gap: 6px;
+            background: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 50px;
+        }
+
+        .interest-tag 
+        {
+            background: transparent;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
             color: #475569;
+            white-space: nowrap;
         }
 
-        .interest-tag:hover, .interest-tag.active {
+        .interest-tag.active, .interest-tag:hover 
+        {
             background: #c9974c;
             color: white;
         }
 
-        .sale-rent-group {
+        /* Price Dropdown */
+        .price-filter-group 
+        {
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 140px;
         }
 
-        .sale-rent-btn {
-            padding: 8px 24px;
-            border-radius: 30px;
-            border: 1.5px solid #cbd5e1;
-            background: white;
+        .price-select 
+        {
+            padding: 8px 14px;
+            border-radius: 40px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
+            outline: none;
+            font-family: inherit;
         }
 
-        .sale-rent-btn.active {
-            background: #1e2a3e;
-            color: white;
-            border-color: #1e2a3e;
+        .price-select:hover 
+        {
+            border-color: #c9974c;
         }
 
-        /* checkbox group for Luxury and Premium */
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-left: 10px;
-        }
-
-        .checkbox-label {
+        /* Counter Controls (Bed & Bath) */
+        .counter-controls 
+        {
             display: flex;
             align-items: center;
             gap: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #475569;
-            font-size: 14px;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 50px;
         }
 
-        .checkbox-label input {
-            width: 18px;
-            height: 18px;
+        .counter-btn 
+        {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #1e2a3e;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .counter-btn:hover 
+        {
+            background: #c9974c;
+            color: white;
+        }
+
+        .counter-value 
+        {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e2a3e;
+            min-width: 35px;
+            text-align: center;
+        }
+
+        /* Sale/Rent Toggle */
+        .sale-rent-group 
+        {
+            display: flex;
+            gap: 6px;
+            background: #f8fafc;
+            padding: 4px;
+            border-radius: 50px;
+        }
+
+        .sale-rent-btn 
+        {
+            padding: 8px 24px;
+            border-radius: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .sale-rent-btn.active 
+        {
+            background: #1e2a3e;
+            color: white;
+        }
+
+        /* Checkbox Group */
+        .checkbox-group 
+        {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            background: #f8fafc;
+            padding: 6px 18px;
+            border-radius: 50px;
+        }
+
+        .checkbox-label 
+        {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            color: #1e2a3e;
+            white-space: nowrap;
+        }
+
+        .checkbox-label input 
+        {
+            width: 16px;
+            height: 16px;
             cursor: pointer;
             accent-color: #c9974c;
         }
 
-        .more-filters {
+        /* More Filters Button */
+        .more-filters 
+        {
+            background: transparent;
+            border: 1px dashed #cbd5e1;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
             color: #c9974c;
-            font-weight: 600;
             cursor: pointer;
-            text-decoration: underline;
+            transition: 0.2s;
+            white-space: nowrap;
         }
 
-        /* ===== PROPERTY CARDS GRID ===== */
-        .properties-grid {
+        .more-filters:hover 
+        {
+            background: #fef5e8;
+            border-color: #c9974c;
+        }
+
+        .properties-grid 
+        {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 28px;
             margin-bottom: 50px;
         }
 
-        .property-card {
+        .property-card 
+        {
             background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #edf2f7;
             cursor: pointer;
+            transition: transform 0.2s;
         }
 
-        .property-card:hover {
+        .property-card:hover 
+        {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
-        .card-image {
+        .card-image 
+        {
             height: 220px;
             background-size: cover;
             background-position: center;
             position: relative;
         }
 
-        /* NEW FRESH PROPERTY PHOTOS - All new images */
         .img-flat1 { background-image: url('https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-flat2 { background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=600'); }
-        .img-flat3 { background-image: url('https://images.pexels.com/photos/16461793/pexels-photo-16461793.jpeg'); }
+        .img-flat3 { background-image: url('https://images.pexels.com/photos/16461793/pexels-photo-16461793.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-condo1 { background-image: url('https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=600'); }
-        .img-condo2 { background-image: url('https://images.pexels.com/photos/36578401/pexels-photo-36578401.jpeg'); }
+        .img-condo2 { background-image: url('https://images.pexels.com/photos/36578401/pexels-photo-36578401.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-condo3 { background-image: url('https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-villa1 { background-image: url('https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-villa2 { background-image: url('https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-villa3 { background-image: url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-mansion1 { background-image: url('https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600'); }
-        .img-mansion2 { background-image: url('https://images.pexels.com/photos/775195/pexels-photo-775195.jpeg'); }
+        .img-mansion2 { background-image: url('https://images.pexels.com/photos/775195/pexels-photo-775195.jpeg?auto=compress&cs=tinysrgb&w=600'); }
         .img-mansion3 { background-image: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600'); }
 
-        .featured-badge {
+        .featured-badge, .premium-badge 
+        {
             position: absolute;
             top: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .featured-badge 
+        {
             left: 12px;
             background: rgba(0,0,0,0.7);
             color: #ffd966;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
         }
 
-        .premium-badge {
-            position: absolute;
-            top: 12px;
+        .premium-badge 
+        {
             right: 12px;
             background: linear-gradient(135deg, #c9974c, #b8860b);
             color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: bold;
         }
 
-        .card-content {
+        .card-content 
+        {
             padding: 18px;
         }
 
-        .property-type {
+        .property-type 
+        {
             color: #c9974c;
             font-weight: 700;
             font-size: 13px;
-            margin-bottom: 6px;
         }
 
-        .property-title {
+        .property-title 
+        {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin: 6px 0;
         }
 
-        .property-location {
+        .property-location 
+        {
             color: #64748b;
             font-size: 14px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
-        .property-specs {
+        .property-specs 
+        {
             display: flex;
             gap: 18px;
             font-size: 13px;
@@ -345,40 +445,23 @@
             border-bottom: 1px solid #eef2f8;
         }
 
-        .property-price {
+        .property-price 
+        {
             font-size: 22px;
             font-weight: 800;
             color: #c9974c;
             margin: 10px 0;
         }
 
-        .view-details {
-            width: 100%;
-            padding: 10px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 40px;
+        .rent-price 
+        {
+            font-size: 18px;
             font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
+            color: #2c7a4d;
         }
 
-        .view-details:hover {
-            background: #1e2a3e;
-            color: white;
-        }
-
-        /* ===== SHOWING FEATURED IMAGE TEXT ===== */
-        .showing-text {
-            text-align: center;
-            font-size: 14px;
-            color: #64748b;
-            margin: -20px 0 20px 0;
-            font-style: italic;
-        }
-
-        /* ===== UPCOMING SECTION ===== */
-        .upcoming-section {
+        .upcoming-section 
+        {
             background: linear-gradient(135deg, #1e2a3e 0%, #2c3e4e 100%);
             border-radius: 28px;
             padding: 45px 35px;
@@ -387,23 +470,16 @@
             color: white;
         }
 
-        .upcoming-section h2 {
+        .upcoming-section h2 
+        {
             font-size: 32px;
             margin-bottom: 12px;
-            font-weight: 700;
         }
 
-        .upcoming-section h2 span {
-            color: #c9974c;
-        }
+        .upcoming-section h2 span { color: #c9974c; }
 
-        .upcoming-section p {
-            font-size: 16px;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        .notify-btn {
+        .notify-btn 
+        {
             background: #c9974c;
             color: #1e2a3e;
             border: none;
@@ -412,16 +488,10 @@
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        .notify-btn:hover {
-            background: white;
-            transform: scale(1.02);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
+        .footer 
+        {
             background: #0f1a24;
             color: #e0e8f0;
             padding: 35px 30px 25px;
@@ -429,42 +499,36 @@
             margin-top: 30px;
         }
 
-        .footer-content {
+        .footer-content 
+        {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 30px;
         }
 
-        .footer-col h4 {
+        .footer-col h4 
+        {
             color: #c9974c;
             margin-bottom: 12px;
-            font-size: 16px;
         }
 
-        .footer-col p {
-            margin: 8px 0;
-            font-size: 13px;
-        }
-
-        .social-icons {
+        .social-icons 
+        {
             display: flex;
             gap: 20px;
-            margin-top: 8px;
         }
 
-        .social-icons a {
+        .social-icons a 
+        {
             color: #e0e8f0;
             text-decoration: none;
-            font-size: 18px;
-            transition: 0.2s;
         }
 
-        .social-icons a:hover {
-            color: #c9974c;
-        }
+        .social-icons a:hover { color: #c9974c; }
 
-        .copyright-bottom {
+        .copyright-bottom 
+        {
             text-align: center;
             margin-top: 30px;
             padding-top: 20px;
@@ -472,60 +536,53 @@
             font-size: 12px;
         }
 
-        @media (max-width: 900px) {
-            .container {
-                padding: 20px 15px;
-            }
-            .filter-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .checkbox-group {
-                margin-left: 0;
-                flex-wrap: wrap;
-            }
-            .upcoming-section h2 {
-                font-size: 24px;
+        @media (max-width: 1100px) 
+        {
+            .filter-row 
+            {
+                justify-content: flex-start;
             }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- HEADER -->
     <div class="header">
         <div class="logo">
             <span class="heritage">The Heritage</span>
             <span class="zenith">Zenith</span>
         </div>
         <div class="auth-buttons">
-            <button class="signin-btn" onclick="showMessage('Sign In clicked! Welcome back.')">Sign-In</button>
-            <button class="signup-btn" onclick="showMessage('Sign Up clicked! Create your account.')">Sign-Up</button>
+            <button class="signin-btn" onclick="showMessage('Sign In clicked!')">Sign-In</button>
+            <button class="signup-btn" onclick="showMessage('Sign Up clicked!')">Sign-Up</button>
         </div>
     </div>
 
-    <!-- SEARCH BAR -->
     <div class="search-section">
         <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search by name, locations...">
-            <button onclick="searchProperties()">🔍 Search</button>
+            <input type="text" id="searchInput" placeholder="Search by name or location...">
+            <button onclick="filterProperties()">Search</button>
         </div>
     </div>
 
-    <!-- FILTERS SECTION -->
     <div class="filters-section">
         <div class="filter-row">
-            <div class="interest-group">
-                <span class="interest-tag active" data-interest="all" onclick="setInterest('all')">I'm interested in:</span>
-                <span class="interest-tag" data-interest="flat" onclick="setInterest('flat')">Flat</span>
-                <span class="interest-tag" data-interest="condo" onclick="setInterest('condo')">Condo</span>
-                <span class="interest-tag" data-interest="villa" onclick="setInterest('villa')">Villa</span>
-                <span class="interest-tag" data-interest="mansion" onclick="setInterest('mansion')">Mansion</span>
+            <!-- Interest Tags -->
+            <div class="filter-group">
+                <div class="filter-label">I'm interested in:</div>
+                <div class="interest-group">
+                    <span class="interest-tag active" data-interest="all">All</span>
+                    <span class="interest-tag" data-interest="flat">Flat</span>
+                    <span class="interest-tag" data-interest="condo">Condo</span>
+                    <span class="interest-tag" data-interest="villa">Villa</span>
+                    <span class="interest-tag" data-interest="mansion">Mansion</span>
+                </div>
             </div>
 
-            <div class="filter-group">
-                <label>Price:</label>
-                <select id="priceFilter" onchange="filterProperties()">
+            <!-- Price Filter Dropdown -->
+            <div class="price-filter-group">
+                <div class="filter-label">Price</div>
+                <select id="priceFilter" class="price-select">
                     <option value="all">All</option>
                     <option value="0-500000">$0 - $500k</option>
                     <option value="500000-2000000">$500k - $2M</option>
@@ -534,75 +591,73 @@
                 </select>
             </div>
 
+            <!-- Bed Filter -->
             <div class="filter-group">
-                <label>Bed:</label>
-                <select id="bedFilter" onchange="filterProperties()">
-                    <option value="all">Any</option>
-                    <option value="1">1+</option>
-                    <option value="2">2+</option>
-                    <option value="3">3+</option>
-                    <option value="4">4+</option>
-                    <option value="5">5+</option>
-                </select>
+                <div class="filter-label">Bed</div>
+                <div class="counter-controls">
+                    <button class="counter-btn" id="bedMinusBtn">-</button>
+                    <span class="counter-value" id="bedValue">0</span>
+                    <button class="counter-btn" id="bedPlusBtn">+</button>
+                </div>
             </div>
 
+            <!-- Bath Filter -->
             <div class="filter-group">
-                <label>Bath:</label>
-                <select id="bathFilter" onchange="filterProperties()">
-                    <option value="all">Any</option>
-                    <option value="1">1+</option>
-                    <option value="2">2+</option>
-                    <option value="3">3+</option>
-                    <option value="4">4+</option>
-                </select>
+                <div class="filter-label">Bath</div>
+                <div class="counter-controls">
+                    <button class="counter-btn" id="bathMinusBtn">-</button>
+                    <span class="counter-value" id="bathValue">0</span>
+                    <button class="counter-btn" id="bathPlusBtn">+</button>
+                </div>
             </div>
 
-            <div class="sale-rent-group">
-                <button class="sale-rent-btn active" data-type="sale" onclick="setSaleRent('sale')">Sale</button>
-                <button class="sale-rent-btn" data-type="rent" onclick="setSaleRent('rent')">Rent</button>
+            <!-- Sale/Rent Toggle -->
+            <div class="filter-group">
+                <div class="filter-label">Status</div>
+                <div class="sale-rent-group">
+                    <button class="sale-rent-btn active" data-type="sale">Sale</button>
+                    <button class="sale-rent-btn" data-type="rent">Rent</button>
+                </div>
             </div>
 
             <!-- Luxury and Premium Checkboxes -->
-            <div class="checkbox-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="luxuryCheckbox" onchange="filterProperties()"> Luxury
-                </label>
-                <label class="checkbox-label">
-                    <input type="checkbox" id="premiumCheckbox" onchange="filterProperties()"> Premium
-                </label>
+            <div class="filter-group">
+                <div class="filter-label">Features</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="luxuryCheckbox"> Luxury
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="premiumCheckbox"> Premium
+                    </label>
+                </div>
             </div>
 
-            <span class="more-filters" onclick="showMessage('More filters coming soon!')">More filters +</span>
+            <!-- More Filters Button -->
+            <button class="more-filters" id="moreFiltersBtn">More filters +</button>
         </div>
     </div>
 
-    <!-- SHOWING FEATURED IMAGE TEXT -->
-    <div class="showing-text">Showing Featured image</div>
-
-    <!-- PROPERTIES GRID -->
     <div class="properties-grid" id="propertiesGrid"></div>
 
-    <!-- UPCOMING SECTION -->
     <div class="upcoming-section">
         <h2>Upcoming Luxury <span>Condos, Flats, Villas</span> and Mansions in USA</h2>
-        <p>Are you excited? We are too! Stay tuned for more future updates and sales!</p>
-        <button class="notify-btn" onclick="showMessage('You will be notified about upcoming luxury properties!')">Get notify →</button>
+        <p>Stay tuned for more future updates and sales!</p>
+        <button class="notify-btn" onclick="showMessage('You will be notified!')">Get notify</button>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
         <div class="footer-content">
             <div class="footer-col">
-                <p>Copyright © 2016. The Heritage Zenith. All rights reserved.</p>
+                <p>Copyright 2016. The Heritage Zenith. All rights reserved.</p>
             </div>
             <div class="footer-col">
-                <h4>Contact Us</h4>
-                <p>New York: +029929291192</p>
-                <p>Chicago: +129293949292</p>
-                <p>Hawaii: +1929384848494</p>
+                <h4>Contact</h4>
+                <p>New York: +1 292 929 1192</p>
+                <p>Chicago: +1 293 949 2929</p>
             </div>
             <div class="footer-col">
-                <h4>Follow us on:</h4>
+                <h4>Follow us</h4>
                 <div class="social-icons">
                     <a href="#" onclick="socialClick('Facebook')">Facebook</a>
                     <a href="#" onclick="socialClick('Instagram')">Instagram</a>
@@ -611,176 +666,331 @@
             </div>
         </div>
         <div class="copyright-bottom">
-            <p>Copyright © 2016. The Heritage Zenith. All rights reserved.</p>
+            <p>Copyright 2016. The Heritage Zenith. All rights reserved.</p>
         </div>
     </div>
 </div>
 
 <script>
-    // Property Data - ONLY Flat, Condo, Villa, Mansion (NO House properties) - ALL NEW PHOTOS
-    const properties = [
-        { id: 1, name: "Metro Heights Apartment", location: "New York, USA", type: "flat", beds: 2, baths: 3, sqft: 2456, price: 150000, image: "img-flat1", sale: true, rent: true, premium: false, isLuxury: false },
-        { id: 2, name: "Royal Crest Manor", location: "Beverley Hills, LA, USA", type: "mansion", beds: 14, baths: 14, sqft: 14569, price: 52156000, image: "img-mansion1", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 3, name: "Ocean Breeze Villa", location: "Malibu, California, USA", type: "villa", beds: 6, baths: 6, sqft: 7800, price: 8900000, image: "img-villa1", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 4, name: "Skyline Tower Condo", location: "Miami, Florida, USA", type: "condo", beds: 3, baths: 3, sqft: 3200, price: 2450000, image: "img-condo1", sale: true, rent: true, premium: true, isLuxury: true },
-        { id: 5, name: "Urban Nest Flat", location: "New York, USA", type: "flat", beds: 2, baths: 3, sqft: 2456, price: 150000, image: "img-flat2", sale: true, rent: true, premium: false, isLuxury: false },
-        { id: 6, name: "Golden Hills Mansion", location: "Beverley Hills, LA, USA", type: "mansion", beds: 14, baths: 14, sqft: 14569, price: 52156000, image: "img-mansion2", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 7, name: "Seaside Paradise Villa", location: "Hawaii, USA", type: "villa", beds: 5, baths: 5, sqft: 5200, price: 3750000, image: "img-villa2", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 8, name: "Downtown Loft", location: "New York, USA", type: "flat", beds: 2, baths: 3, sqft: 2456, price: 150000, image: "img-flat3", sale: true, rent: true, premium: false, isLuxury: false },
-        { id: 9, name: "Crystal Palace Estate", location: "Beverley Hills, LA, USA", type: "mansion", beds: 12, baths: 12, sqft: 12500, price: 35000000, image: "img-mansion3", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 10, name: "Highland Terrace Condo", location: "Chicago, USA", type: "condo", beds: 2, baths: 2, sqft: 1800, price: 380000, image: "img-condo2", sale: true, rent: true, premium: false, isLuxury: false },
-        { id: 11, name: "Pearl Gateway Mansion", location: "Miami, Florida, USA", type: "mansion", beds: 8, baths: 8, sqft: 9800, price: 12500000, image: "img-mansion1", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 12, name: "Sunset Ridge Villa", location: "Arizona, USA", type: "villa", beds: 4, baths: 4, sqft: 4500, price: 1850000, image: "img-villa3", sale: true, rent: false, premium: false, isLuxury: true },
-        { id: 13, name: "Central Park Tower Condo", location: "New York, USA", type: "condo", beds: 3, baths: 3, sqft: 2800, price: 3250000, image: "img-condo3", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 14, name: "Mediterranean Villa", location: "Florida, USA", type: "villa", beds: 5, baths: 5, sqft: 6200, price: 4200000, image: "img-villa1", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 15, name: "Modern Flat Downtown", location: "Chicago, USA", type: "flat", beds: 2, baths: 2, sqft: 1600, price: 320000, image: "img-flat1", sale: true, rent: true, premium: false, isLuxury: false },
-        { id: 16, name: "Lakeside Condo", location: "Chicago, USA", type: "condo", beds: 2, baths: 2, sqft: 1700, price: 420000, image: "img-condo2", sale: true, rent: true, premium: false, isLuxury: false },
-        { id: 17, name: "Hilltop Mansion", location: "Texas, USA", type: "mansion", beds: 10, baths: 10, sqft: 11000, price: 18500000, image: "img-mansion2", sale: true, rent: false, premium: true, isLuxury: true },
-        { id: 18, name: "Tropical Villa Retreat", location: "Florida, USA", type: "villa", beds: 4, baths: 4, sqft: 4800, price: 2950000, image: "img-villa2", sale: true, rent: false, premium: false, isLuxury: true }
+    // Property Database
+    const properties = 
+    [
+        { id: 1, name: "Metro Heights Apartment", location: "New York, USA", type: "flat", beds: 2, baths: 3, sqft: 2456, salePrice: 150000, rentPrice: 3200, image: "img-flat1", sale: true, rent: true, premium: false, luxury: false },
+        { id: 2, name: "Royal Crest Manor", location: "Beverley Hills, LA", type: "mansion", beds: 14, baths: 14, sqft: 14569, salePrice: 52156000, rentPrice: 18500, image: "img-mansion1", sale: true, rent: true, premium: true, luxury: true },
+        { id: 3, name: "Ocean Breeze Villa", location: "Malibu, California", type: "villa", beds: 6, baths: 6, sqft: 7800, salePrice: 8900000, rentPrice: 16500, image: "img-villa1", sale: true, rent: true, premium: true, luxury: true },
+        { id: 4, name: "Skyline Tower Condo", location: "Miami, Florida", type: "condo", beds: 3, baths: 3, sqft: 3200, salePrice: 2450000, rentPrice: 7800, image: "img-condo1", sale: true, rent: true, premium: true, luxury: true },
+        { id: 5, name: "Urban Nest Flat", location: "New York, USA", type: "flat", beds: 2, baths: 2, sqft: 1800, salePrice: 189000, rentPrice: 2800, image: "img-flat2", sale: true, rent: true, premium: false, luxury: false },
+        { id: 6, name: "Golden Hills Estate", location: "Beverley Hills, LA", type: "mansion", beds: 10, baths: 10, sqft: 12000, salePrice: 35000000, rentPrice: 19800, image: "img-mansion2", sale: true, rent: true, premium: true, luxury: true },
+        { id: 7, name: "Seaside Paradise Villa", location: "Hawaii, USA", type: "villa", beds: 5, baths: 5, sqft: 5200, salePrice: 3750000, rentPrice: 14800, image: "img-villa2", sale: true, rent: true, premium: true, luxury: true },
+        { id: 8, name: "Downtown Loft", location: "New York, USA", type: "flat", beds: 1, baths: 1, sqft: 1200, salePrice: 125000, rentPrice: 2200, image: "img-flat3", sale: true, rent: true, premium: false, luxury: false },
+        { id: 9, name: "Crystal Palace", location: "Beverley Hills, LA", type: "mansion", beds: 12, baths: 12, sqft: 12500, salePrice: 45000000, rentPrice: 19500, image: "img-mansion3", sale: true, rent: true, premium: true, luxury: true },
+        { id: 10, name: "Highland Terrace Condo", location: "Chicago, USA", type: "condo", beds: 2, baths: 2, sqft: 1800, salePrice: 380000, rentPrice: 5200, image: "img-condo2", sale: true, rent: true, premium: false, luxury: false },
+        { id: 11, name: "Pearl Gateway Mansion", location: "Miami, Florida", type: "mansion", beds: 8, baths: 8, sqft: 9800, salePrice: 12500000, rentPrice: 16800, image: "img-mansion1", sale: true, rent: true, premium: true, luxury: true },
+        { id: 12, name: "Sunset Ridge Villa", location: "Arizona, USA", type: "villa", beds: 4, baths: 4, sqft: 4500, salePrice: 1850000, rentPrice: 12800, image: "img-villa3", sale: true, rent: true, premium: false, luxury: true },
+        { id: 13, name: "Central Park Tower", location: "New York, USA", type: "condo", beds: 3, baths: 3, sqft: 2800, salePrice: 3250000, rentPrice: 9200, image: "img-condo3", sale: true, rent: true, premium: true, luxury: true },
+        { id: 14, name: "Mediterranean Villa", location: "Florida, USA", type: "villa", beds: 5, baths: 5, sqft: 6200, salePrice: 4200000, rentPrice: 15800, image: "img-villa1", sale: true, rent: true, premium: true, luxury: true },
+        { id: 15, name: "Modern Flat", location: "Chicago, USA", type: "flat", beds: 2, baths: 2, sqft: 1600, salePrice: 320000, rentPrice: 2600, image: "img-flat1", sale: true, rent: true, premium: false, luxury: false },
+        { id: 16, name: "Lakeside Condo", location: "Chicago, USA", type: "condo", beds: 2, baths: 2, sqft: 1700, salePrice: 420000, rentPrice: 5800, image: "img-condo2", sale: true, rent: true, premium: false, luxury: false }
     ];
 
+    // Filter state variables
     let currentInterest = "all";
     let currentSaleRent = "sale";
+    let minBeds = 0;
+    let minBaths = 0;
 
-    function renderProperties() {
-        const grid = document.getElementById('propertiesGrid');
+    function getDisplayPrice(property) 
+    {
+        if (currentSaleRent === "sale") 
+        {
+            return "$" + property.salePrice.toLocaleString();
+        } 
+        else 
+        {
+            return "$" + property.rentPrice.toLocaleString() + " / month";
+        }
+    }
+
+    function getPriceValue(property) 
+    {
+        if (currentSaleRent === "sale") 
+        {
+            return property.salePrice;
+        } 
+        else 
+        {
+            return property.rentPrice;
+        }
+    }
+
+    function filterProperties() 
+    {
         let filtered = [...properties];
 
-        // Filter by interest (Flat, Condo, Villa, Mansion only)
-        if (currentInterest !== "all") {
+        // Filter by interest type
+        if (currentInterest !== "all") 
+        {
             filtered = filtered.filter(p => p.type === currentInterest);
         }
 
-        // Filter by sale/rent
+        // Filter by Sale/Rent
         filtered = filtered.filter(p => currentSaleRent === "sale" ? p.sale : p.rent);
 
-        // Filter by Luxury checkbox - ONLY show properties marked as isLuxury when checked
+        // Luxury checkbox
         const luxuryChecked = document.getElementById('luxuryCheckbox').checked;
-        if (luxuryChecked) {
-            filtered = filtered.filter(p => p.isLuxury === true);
+        if (luxuryChecked) 
+        {
+            filtered = filtered.filter(p => p.luxury === true);
         }
 
-        // Filter by Premium checkbox
+        // Premium checkbox
         const premiumChecked = document.getElementById('premiumCheckbox').checked;
-        if (premiumChecked) {
+        if (premiumChecked) 
+        {
             filtered = filtered.filter(p => p.premium === true);
         }
 
-        // Filter by price
+        // Price filter from dropdown
         const priceVal = document.getElementById('priceFilter').value;
-        if (priceVal !== "all") {
-            if (priceVal === "0-500000") filtered = filtered.filter(p => p.price < 500000);
-            else if (priceVal === "500000-2000000") filtered = filtered.filter(p => p.price >= 500000 && p.price <= 2000000);
-            else if (priceVal === "2000000-10000000") filtered = filtered.filter(p => p.price > 2000000 && p.price <= 10000000);
-            else if (priceVal === "10000000+") filtered = filtered.filter(p => p.price > 10000000);
+        if (priceVal !== "all") 
+        {
+            if (currentSaleRent === "sale") 
+            {
+                if (priceVal === "0-500000") filtered = filtered.filter(p => p.salePrice < 500000);
+                else if (priceVal === "500000-2000000") filtered = filtered.filter(p => p.salePrice >= 500000 && p.salePrice <= 2000000);
+                else if (priceVal === "2000000-10000000") filtered = filtered.filter(p => p.salePrice > 2000000 && p.salePrice <= 10000000);
+                else if (priceVal === "10000000+") filtered = filtered.filter(p => p.salePrice > 10000000);
+            } 
+            else 
+            {
+                if (priceVal === "0-500000") filtered = filtered.filter(p => p.rentPrice < 500);
+                else if (priceVal === "500000-2000000") filtered = filtered.filter(p => p.rentPrice >= 500 && p.rentPrice <= 2000);
+                else if (priceVal === "2000000-10000000") filtered = filtered.filter(p => p.rentPrice > 2000 && p.rentPrice <= 5000);
+                else if (priceVal === "10000000+") filtered = filtered.filter(p => p.rentPrice > 5000);
+            }
         }
 
-        // Filter by beds
-        const bedsVal = document.getElementById('bedFilter').value;
-        if (bedsVal !== "all") {
-            filtered = filtered.filter(p => p.beds >= parseInt(bedsVal));
+        // Beds filter (minimum)
+        if (minBeds > 0) 
+        {
+            filtered = filtered.filter(p => p.beds >= minBeds);
         }
 
-        // Filter by baths
-        const bathsVal = document.getElementById('bathFilter').value;
-        if (bathsVal !== "all") {
-            filtered = filtered.filter(p => p.baths >= parseInt(bathsVal));
+        // Baths filter (minimum)
+        if (minBaths > 0) 
+        {
+            filtered = filtered.filter(p => p.baths >= minBaths);
         }
 
         // Search filter
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        if (searchTerm) {
-            filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm) || p.location.toLowerCase().includes(searchTerm));
+        if (searchTerm) 
+        {
+            filtered = filtered.filter(p => 
+                p.name.toLowerCase().includes(searchTerm) || 
+                p.location.toLowerCase().includes(searchTerm)
+            );
         }
 
-        if (filtered.length === 0) {
-            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px;">No properties match your filters. Try adjusting your search!</div>';
+        renderProperties(filtered);
+    }
+
+    function renderProperties(propertiesToShow) 
+    {
+        const grid = document.getElementById('propertiesGrid');
+        
+        if (propertiesToShow.length === 0) 
+        {
+            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px;">No properties match your filters. Try different options!</div>';
             return;
         }
 
-        grid.innerHTML = filtered.map(prop => {
-            let typeLabel = '';
-            if (prop.type === 'flat') typeLabel = 'FLAT';
-            else if (prop.type === 'condo') typeLabel = 'CONDO';
-            else if (prop.type === 'villa') typeLabel = 'VILLA';
-            else if (prop.type === 'mansion') typeLabel = 'MANSION';
-            else typeLabel = 'PROPERTY';
-
+        grid.innerHTML = propertiesToShow.map(prop => 
+        {
+            let typeLabel = prop.type.toUpperCase();
+            let displayPrice = getDisplayPrice(prop);
+            let priceClass = currentSaleRent === "rent" ? "rent-price" : "property-price";
+            
             return `
-            <div class="property-card" onclick="viewProperty(${prop.id})">
-                <div class="card-image ${prop.image}">
-                    <div class="featured-badge">Featured</div>
-                    ${prop.premium ? '<div class="premium-badge">PREMIUM</div>' : ''}
-                </div>
-                <div class="card-content">
-                    <div class="property-type">${typeLabel}</div>
-                    <div class="property-title">${prop.name}</div>
-                    <div class="property-location">${prop.location}</div>
-                    <div class="property-specs">
-                        <span> ${prop.sqft}ft²</span>
-                        <span>${prop.beds} Bdrms</span>
-                        <span>${prop.baths} Baths</span>
+                <div class="property-card" onclick="viewPropertyDetail(${prop.id})">
+                    <div class="card-image ${prop.image}">
+                        <div class="featured-badge">Featured</div>
+                        ${prop.premium ? '<div class="premium-badge">PREMIUM</div>' : ''}
                     </div>
-                    <div class="property-price">$${prop.price.toLocaleString()}</div>
-                    <button class="view-details" onclick="event.stopPropagation(); viewProperty(${prop.id})">View Property →</button>
+                    <div class="card-content">
+                        <div class="property-type">${typeLabel}</div>
+                        <div class="property-title">${prop.name}</div>
+                        <div class="property-location">${prop.location}</div>
+                        <div class="property-specs">
+                            <span>${prop.sqft.toLocaleString()} ft²</span>
+                            <span>${prop.beds} Beds</span>
+                            <span>${prop.baths} Baths</span>
+                        </div>
+                        <div class="${priceClass}">${displayPrice}</div>
+                    </div>
                 </div>
-            </div>
-        `}).join('');
+            `;
+        }).join('');
     }
 
-    function searchProperties() {
-        renderProperties();
-        showMessage('Search completed!');
-    }
-
-    function filterProperties() {
-        renderProperties();
-    }
-
-    function setInterest(interest) {
-        currentInterest = interest;
-        document.querySelectorAll('.interest-tag').forEach(tag => {
-            tag.classList.remove('active');
-            if (tag.getAttribute('data-interest') === interest) tag.classList.add('active');
-        });
-        renderProperties();
-    }
-
-    function setSaleRent(type) {
-        currentSaleRent = type;
-        document.querySelectorAll('.sale-rent-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-type') === type) btn.classList.add('active');
-        });
-        renderProperties();
-    }
-
-    function viewProperty(id) {
-        const prop = properties.find(p => p.id === id);
-        if (prop) {
-            let luxuryText = '';
-            if (prop.isLuxury) luxuryText = 'LUXURY PROPERTY \n';
-            let premiumText = '';
-            if (prop.premium) premiumText = 'PREMIUM SELECTION \n';
-            showMessage(`${prop.name}\n${prop.location}\n$${prop.price.toLocaleString()}\n${prop.beds} beds | 🛁 ${prop.baths} baths\n${luxuryText}${premiumText}Contact us for a private tour!`);
+    function viewPropertyDetail(propertyId) 
+    {
+        const property = properties.find(p => p.id === propertyId);
+        if (property) 
+        {
+            const propertyToSend = 
+            {
+                ...property,
+                currentPrice: currentSaleRent === "sale" ? property.salePrice : property.rentPrice,
+                isRental: currentSaleRent === "rent"
+            };
+            localStorage.setItem('selectedProperty', JSON.stringify(propertyToSend));
+            window.location.href = 'propertydetailpage.html';
         }
     }
 
-    function showMessage(msg) {
+    function showMessage(msg) 
+    {
         alert(msg);
     }
 
-    function socialClick(platform) {
-        showMessage(`Follow us on ${platform} for latest listings and updates!`);
+    function socialClick(platform) 
+    {
+        showMessage('Follow us on ' + platform + '!');
     }
 
-    // Add event listeners for search input
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchProperties();
-    });
+    // Update price dropdown options based on Sale/Rent mode
+    function updatePriceFilterOptions() 
+    {
+        const priceSelect = document.getElementById('priceFilter');
+        if (currentSaleRent === "rent") 
+        {
+            priceSelect.innerHTML = `
+                <option value="all">All</option>
+                <option value="0-500000">$0 - $500 / month</option>
+                <option value="500000-2000000">$500 - $2,000 / month</option>
+                <option value="2000000-10000000">$2,000 - $5,000 / month</option>
+                <option value="10000000+">$5,000+ / month</option>
+            `;
+        } else 
+        {
+            priceSelect.innerHTML = `
+                <option value="all">All</option>
+                <option value="0-500000">$0 - $500k</option>
+                <option value="500000-2000000">$500k - $2M</option>
+                <option value="2000000-10000000">$2M - $10M</option>
+                <option value="10000000+">$10M+</option>
+            `;
+        }
+        priceSelect.value = "all";
+    }
 
-    // Initial render
-    renderProperties();
+    // Setup all event listeners
+    function setupEventListeners() 
+    {
+        // Interest tags
+        document.querySelectorAll('.interest-tag').forEach(tag => 
+        {
+            tag.addEventListener('click', () => 
+            {
+                document.querySelectorAll('.interest-tag').forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                currentInterest = tag.getAttribute('data-interest');
+                filterProperties();
+            });
+        });
+
+        // Sale/Rent buttons
+        document.querySelectorAll('.sale-rent-btn').forEach(btn => 
+        {
+            btn.addEventListener('click', () => 
+            {
+                document.querySelectorAll('.sale-rent-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSaleRent = btn.getAttribute('data-type');
+                updatePriceFilterOptions();
+                filterProperties();
+            });
+        });
+
+        // Price dropdown
+        document.getElementById('priceFilter').addEventListener('change', () => filterProperties());
+
+        // Bed Plus/Minus buttons
+        const bedMinusBtn = document.getElementById('bedMinusBtn');
+        const bedPlusBtn = document.getElementById('bedPlusBtn');
+        const bedValueSpan = document.getElementById('bedValue');
+        
+        bedMinusBtn.addEventListener('click', () => 
+        {
+            if (minBeds > 0) 
+            {
+                minBeds--;
+                bedValueSpan.innerText = minBeds;
+                filterProperties();
+            }
+        });
+        
+        bedPlusBtn.addEventListener('click', () => 
+        {
+            if (minBeds < 10) 
+            {
+                minBeds++;
+                bedValueSpan.innerText = minBeds;
+                filterProperties();
+            }
+        });
+
+        // Bath Plus/Minus buttons
+        const bathMinusBtn = document.getElementById('bathMinusBtn');
+        const bathPlusBtn = document.getElementById('bathPlusBtn');
+        const bathValueSpan = document.getElementById('bathValue');
+        
+        bathMinusBtn.addEventListener('click', () => 
+        {
+            if (minBaths > 0) 
+            {
+                minBaths--;
+                bathValueSpan.innerText = minBaths;
+                filterProperties();
+            }
+        });
+        
+        bathPlusBtn.addEventListener('click', () => 
+        {
+            if (minBaths < 10) 
+            {
+                minBaths++;
+                bathValueSpan.innerText = minBaths;
+                filterProperties();
+            }
+        });
+
+        // Checkboxes
+        document.getElementById('luxuryCheckbox').addEventListener('change', () => filterProperties());
+        document.getElementById('premiumCheckbox').addEventListener('change', () => filterProperties());
+        
+        // Search input
+        document.getElementById('searchInput').addEventListener('keypress', (e) => 
+        {
+            if (e.key === 'Enter') filterProperties();
+        });
+
+        // More Filters button
+        const moreFiltersBtn = document.getElementById('moreFiltersBtn');
+        moreFiltersBtn.addEventListener('click', () => 
+        {
+            showMessage('More filters coming soon!');
+        });
+    }
+
+    function init() 
+    {
+        setupEventListeners();
+        filterProperties();
+    }
+
+    init();
 </script>
 </body>
 </html>
